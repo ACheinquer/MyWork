@@ -1,0 +1,195 @@
+        ===== Trabalho 3 Alesd =====
+
+    Alunos : Alexandre Cheinquer
+             Bernardo Klein
+
+=================================================
+        Relatório: Tribo barbária  
+
+Objetivo: Nosso programa irá ler pergaminhos antigos, contendo informações
+sobre as árvores genealógicas de tribos de guerreiros bárbaros da antiguidade.
+Essa pergaminho, contém informações do nome dos guerreiros e de seus pais,
+juntamente da quantidade de terras que eles adiquiriram ao longo de suas vidas.
+O objetivo do nosso trabalho é criar algoritmos que Lêem esses pergaminhos,
+organizem esses guerreiros em uma estrutura de árvore genérica e por fim irá 
+distribuir as terras dos pais, após sua morte, paras os seus filhos de forma igualitária,
+para assim podermos ver qual dos filhos, da ultima geração, teve a maior quantidade de terras
+no final de sua vida.
+
+Planejamento: Primeiramente nos juntamos para planejar nosso trabalho, criamos as classes TriboBarbaria,
+em que foi escrito os atributos que um Guerreiros Bárbaro teria, como por exemplo, seu nome, nome do seu pai,
+quantidade de terras. Criamos a classe leitorPergaminho, que utiliza métodos das classes FileReader e BufferedReader
+da biblioteca do JAVA para ler os arquivos (.txt) dos pergaminhos e também utilizamos os métodos de String, para 
+assim separarmos os dados que precisavamos (nome do pai, nome do filho, quantidade de terras). Foi criada também a classe
+arvoreGenerica, que foi vista e criada em aula, utilizamos ela para organizar os Guerreiros Bárbaros em uma estrutura de árvore.
+E por fim temos a nossa classe App, que realiza a execução do programa, essa classe irá instânciar objetos de arvoreGenerica,
+TriboBarbaria e leitorPergaminho para assim utilizar seus métodos e fazer o programa realizar sua função.
+
+Como executar o programa: Será necessário colocar o caminho do arquivo.txt em File na classe leitorPergaminho e então rodar o código a partir da classe App
+
+Classes:  
+
+        =================================================================================================
+          App: Classe principal, que receberá a intância das classes do projeto e irá executar o programa
+
+          (Atributos)
+
+          cont = Contador
+          numeroFilhos = Número de filhos que um pai tem
+          numeroTerrasPai = Número de terras que o pai tem
+          numeroTerrasParaCadaFilho = Número de terras que um pai irá distribuir para cada um de seus filhos (numeroTerrasPai / numeroFilhos)
+        
+
+          (Métodos)
+
+          geracao = Descobrir a geração de um certo guerreiro
+
+
+          (Descrição)
+          
+          A classe App é onde se encontra o método Main, que se refere ao método que irá executar o código.
+          Em App terá intâncias das classes leitorPergaminho, arvoreGenerica e TriboBarbaria.
+          O objeto de TriboBarbaria utilizará do método de leitorPergaminho para ler os dados e armazenar ele em seus guerreiros.
+          Após isso os guerreiros são alocados em um arranjo de guerreiros.
+          A partir de diversas verificações e loops esses guerreiros que estão nesse arranjo,
+          serão colocados na árvore genérica.
+          Será feito distribuição de terras após a morte dos pais.
+          Será feita uma divisão para ver qual será o valor que cada filho receberá,
+          e assim será feita com as diversas gerações.
+          Por fim, ocorrerá a busca pelo número da geração de cada guerreiro, 
+          após essa busca, será feito a verificação do guerreiro da ultima geração que possui o maior número de terras.
+
+        =====================================================================================
+          arvoreGenerica:  Estrutura de dado que organiza arranjos em uma estrutura de árvore
+
+          (Atributos)
+
+           pai = A raiz da árvore será sempre o pai
+           Guerreiro = Demais elementos são os guerreiros filhos
+           children = Filhos
+           nChild = Número de filhos
+
+
+          (Métodos)
+
+          TreeNode = Método constutor
+          addSubtree = Adiciona Sub Árvore
+          getSubtree = Retorna Sub Árvore
+          add = Adiciona um filho (Guerreiro) e lhe da um pai
+          getParent = Retorna pai de um filho
+          printTree = Imprime a Árvore
+          grow = Quando a Árvore chega no limite, o seu tamanho máximo cresce
+          getSubtreesSize = Retorna o tamanho da Sub Árvore
+          searchNode = Retorna uma nodo específico
+
+          
+
+          (Descrição)
+
+          A arvoreGenerica tem o papel de armazenar nossa linhagem de Guerreiros mantendo sempre uma relação pai e filho 
+          e usamos ao longo do programa para contar as gerações
+          e mostar ao usuário a linhagem completa
+
+
+        ================================================================================================================
+          leitorPergaminho: Classe que utiliza os métodos de FileReader e BufferedReader do java para ler arquivos (.txt)
+
+          (Atributos)
+
+          file = armazena o caminho para o arquivo do pergaminho
+          fr = irá ler o arquivo do pergaminho
+          br = irá salvar as linhas do arquivo em strings que terão seus dados salvos no arranjo *info*
+          fr0 = essa instância de file reader irá ler o mesmo arquivo do pergaminho
+          br0 = essa instância de buffered reader irá salvar apenas a primeira linha
+          info = Informações de uma linha
+          terrasInicial = Quantidade de terras inicial
+          terrasFilho = Número de terras que um filho terá
+          nomePai = Nome do pai do guerreiro
+          nomeFilho = Nome do guerreiro filho
+
+
+
+          (Métodos)
+
+          leitorPergaminho = Lê pergaminho, salva suas informações e por fim, cria guerreiros com esses dados
+
+
+          (Descrição)
+
+          Essa classe tem como seu papel ler uma arquivo de texto, nesse caso estamos lendo arquivos referente a um pergaminho.
+          Em leitorPergaminhos, foi utilizada as classes File, FileReader e BufferedReader da biblioteca do Java.
+          File foi usado para armazenar o caminho para os pergaminhos.
+          FileReader foi usado para ler o arquivo texto que teve seu caminho armazenado em File.
+          BufferedReader foi usado para ler as linhas do texto e armazena-las em Strings, que foram modificadas
+          utilizando os métodos da classe String do Java.
+          Foi utilizado o método split para separar as Strings, assim obtendo o nome do pai, do filho e por fim as suas terras.
+          Esses dados foram armazenados em objetos de guerreiros, que foram colocados em um arranjo de guerreiros.
+          Em primeiro lugar, utilizamos FileReader e BufferedReader para armazenar a quantidade incial de terras, 
+          bem como o nome do primeiro pai (raiz), após isso, fechamos esses objetos e criamos outros novos para assim,
+          começarmos novamente a leitura desde o início.
+           
+
+
+        =================================================================================================
+         TriboBarbaria: Classe que irá armazenar os dados (informações) dos bárbaros de uma tribo antiga
+
+         (Atributos)
+
+         nomePai = Nome do pai
+         nome = Nome do guerreiro
+         terras = terras do guerreiro
+         gen = número da geração do guerreiro
+
+
+         (Métodos)
+
+         TriboBarbaria = Método construtor
+         SetNomePai = Aloca novo nome para pai
+         SetNome = Aloca novo nome para guerreiro 
+         SetTerras = Aloca nova quantidade de terras de um guerreiro
+         SetGen = Aloca novo número para a geração de um guerreiro
+         GetNomePai = Retorna nome do pai
+         GetNome = Retorna o nome do guerreiro
+         GetTerras = Retorna a quantidade de terras de um guerreiro
+         GetGen = Retorna o número da geração do guerreiro
+
+
+         (Descrição)
+
+          TriboBarbaria é o objeto que serve como valor da nossa arvore e contêm os Guerreiros da tribo junto dos seguintes atributos:
+          nomePai: Que representa o nome do pai do guerreiro
+          nome: Que representa o nome do próprio guerreiro
+          terras: Que representa a quantidade de terras que o guerreiro tem
+          gen: Que é inicialmente 0 para todos, mas ao fim do programa, representa a geração a qual o guerreiro pertence, no entanto, o guerreiro que iniciou a linhagem permanece com geração = 0
+          TriboBarbaria também possuí os Getters e Setters de todos os seus elementos, bem como um método toString() que serve para mostrar os resultados ao usuário
+          
+
+
+Testes dos casos:
+
+
+         Caso Família Thoregestax (pergaminho.txt):
+
+         O guerreiro da última geração com mais terras é
+         Guerreiro [Nome Pai=Delrenmax, Nome=Klodrimanrix, Terras=12062, Número geração=2]
+
+
+         Caso Família Jailson (pergaminho1.txt):
+
+         O guerreiro da última geração com mais terras é
+         Guerreiro [Nome Pai=Dalton, Nome=Felipe, Terras=204, Número geração=2]
+
+
+         
+
+         Caso Família Ragnar (pergaminho2.txt):
+
+         O guerreiro da última geração com mais terras é
+         Guerreiro [Nome Pai=Bjor, Nome=Kraken, Terras=4055208, Número geração=2]
+
+
+
+         Caso Família GeorgeJoestar (pergaminho3.txt):
+         
+         O guerreiro da última geração com mais terras é
+         Guerreiro [Nome Pai=JotaroKujo, Nome=JolyneKujo, Terras=1700552, Número geração=6]

@@ -1,0 +1,10 @@
+69
+GeorgeJoestar JonathanJoestar 600420
+GeorgeJoestar DioBrando 420690
+JonathanJoestar GeorgeJoestarII 50
+GeorgeJoestarII JosephJoestar 1000000
+JosephJoestar JosukeHigashikata 200000
+JosephJoestar HolyKujo 300
+HolyKujo JotaroKujo 700000
+JotaroKujo JolyneKujo 200000
+DioBrando GiornoGiovanna 1273730
